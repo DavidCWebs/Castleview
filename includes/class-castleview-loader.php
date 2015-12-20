@@ -3,7 +3,7 @@
 /**
  * Register all actions and filters for the plugin
  *
- * @link       http://example.com
+ * @link       http://carawebs.com
  * @since      1.0.0
  *
  * @package    Castleview
@@ -19,7 +19,7 @@
  *
  * @package    Castleview
  * @subpackage Castleview/includes
- * @author     Your Name <email@example.com>
+ * @author     David Egan <david@carawebs.com>
  */
 class Castleview_Loader {
 

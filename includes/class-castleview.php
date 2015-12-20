@@ -6,7 +6,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       http://example.com
+ * @link       http://carawebs.com
  * @since      1.0.0
  *
  * @package    Castleview
@@ -25,7 +25,7 @@
  * @since      1.0.0
  * @package    Castleview
  * @subpackage Castleview/includes
- * @author     Your Name <email@example.com>
+ * @author     David Egan <david@carawebs.com>
  */
 class Castleview {
 
@@ -150,9 +150,19 @@ class Castleview {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Castleview_Admin( $this->get_castleview(), $this->get_version() );
+		$custom_post_types	= new Castleview\Admin\CPT();
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		//$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+		//$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
+		// Register 'project' Custom Post Type
+		$this->loader->add_action( 'init', $custom_post_types, 'project_init' );
+
+		// Register a custom taxonomy for project CPTs
+		$this->loader->add_action( 'init', $custom_post_types, 'project_taxonomy' );
+
+		// Messages for Project CPT
+		$this->loader->add_action( 'post_updated_messages', $custom_post_types, 'project_updated_messages' );
 
 	}
 

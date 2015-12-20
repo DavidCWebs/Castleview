@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://example.com
+ * @link              http://carawebs.com
  * @since             1.0.0
  * @package           Castleview
  *
  * @wordpress-plugin
- * Plugin Name:       WordPress Plugin Boilerplate
- * Plugin URI:        http://example.com/castleview-uri/
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Plugin Name:       Carawebs Castleview
+ * Plugin URI:        http://carawebs.com
+ * Description:       Custom functionaility for the Castleview website
  * Version:           1.0.0
- * Author:            Your Name or Your Company
- * Author URI:        http://example.com/
+ * Author:            David Egan
+ * Author URI:        http://carawebs.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       castleview
@@ -29,6 +29,11 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+/**
+ * Autoload all the NEW classes
+ */
+require_once 'autoloader.php';
 
 /**
  * The code that runs during plugin activation.
@@ -73,3 +78,23 @@ function run_castleview() {
 
 }
 run_castleview();
+
+if ( !function_exists( 'caradump' ) ) {
+
+	/**
+	 * Better debugging - auto add <pre> tags
+	 *
+	 * @param  [type] $var   [description]
+	 * @param  [type] $title [description]
+	 * @return [type]        [description]
+	 */
+	function caradump( $var, $title = null ) {
+
+		echo "<pre>";
+		echo "<h3>Dump $title</h3>";
+		var_dump( $var );
+		echo "</pre>";
+
+	}
+
+}

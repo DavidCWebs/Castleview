@@ -3,7 +3,7 @@
 /**
  * Fired during plugin activation
  *
- * @link       http://example.com
+ * @link       http://carawebs.com
  * @since      1.0.0
  *
  * @package    Castleview
@@ -18,18 +18,27 @@
  * @since      1.0.0
  * @package    Castleview
  * @subpackage Castleview/includes
- * @author     Your Name <email@example.com>
+ * @author     David Egan <david@carawebs.com>
  */
 class Castleview_Activator {
 
 	/**
-	 * Short Description. (use period)
+	 * Actions to be taken on activation
 	 *
-	 * Long Description.
+	 * Set up custom post types.
 	 *
 	 * @since    1.0.0
 	 */
 	public static function activate() {
+
+		// Initialize the class
+		$custom_post_types = new Castleview\Admin\CPT();
+
+		// Register 'project' Custom Post Type
+		$custom_post_types->project_init();
+
+		// Register a custom taxonomy for project CPTs
+		$custom_post_types->project_taxonomy();
 
 	}
 

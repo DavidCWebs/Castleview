@@ -3,7 +3,7 @@
 /**
  * Fired during plugin deactivation
  *
- * @link       http://example.com
+ * @link       http://carawebs.com
  * @since      1.0.0
  *
  * @package    Castleview
@@ -18,7 +18,7 @@
  * @since      1.0.0
  * @package    Castleview
  * @subpackage Castleview/includes
- * @author     Your Name <email@example.com>
+ * @author     David Egan <david@carawebs.com>
  */
 class Castleview_Deactivator {
 

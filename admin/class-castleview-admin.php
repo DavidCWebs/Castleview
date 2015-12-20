@@ -3,7 +3,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       http://example.com
+ * @link       http://carawebs.com
  * @since      1.0.0
  *
  * @package    Castleview
@@ -18,7 +18,7 @@
  *
  * @package    Castleview
  * @subpackage Castleview/admin
- * @author     Your Name <email@example.com>
+ * @author     David Egan <david@carawebs.com>
  */
 class Castleview_Admin {
 
