@@ -40,6 +40,9 @@ class Castleview_Activator {
 		// Register a custom taxonomy for project CPTs
 		$custom_post_types->project_taxonomy();
 
+		// Register 'service' Custom Post Type
+		$custom_post_types->service_init();
+
 	}
 
 }

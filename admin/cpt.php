@@ -19,7 +19,7 @@ if( !defined('WPINC') ) exit( 'No direct access permitted' );
 class CPT {
 
   /**
-  * Register 'staff_resource' custom post type
+  * Register 'project' custom post type
   *
   *
   * @return void
@@ -141,6 +141,83 @@ class CPT {
     );
 
     register_taxonomy( 'project-category', array( 'project' ), $args );
+
+  }
+
+  public function service_init() {
+
+    $labels = [
+      'name'                => _x( 'Services', 'Post Type General Name', 'carawebs-cpt' ),
+      'singular_name'       => _x( 'Service', 'Post Type Singular Name', 'carawebs-cpt' ),
+      'menu_name'           => __( 'Services', 'carawebs-cpt' ),
+      'name_admin_bar'      => __( 'Service', 'carawebs-cpt' ),
+      'parent_item_colon'   => __( 'Parent Service:', 'carawebs-cpt' ),
+      'all_items'           => __( 'All Services', 'carawebs-cpt' ),
+      'add_new_item'        => __( 'Add New Service', 'carawebs-cpt' ),
+      'add_new'             => __( 'Add New', 'carawebs-cpt' ),
+      'new_item'            => __( 'New Service', 'carawebs-cpt' ),
+      'edit_item'           => __( 'Edit Service', 'carawebs-cpt' ),
+      'update_item'         => __( 'Update Service', 'carawebs-cpt' ),
+      'view_item'           => __( 'View Service', 'carawebs-cpt' ),
+      'search_items'        => __( 'Search Services', 'carawebs-cpt' ),
+      'not_found'           => __( 'Not found', 'carawebs-cpt' ),
+      'not_found_in_trash'  => __( 'Not found in Trash', 'carawebs-cpt' ),
+
+    ];
+
+    register_post_type( 'service', array(
+      'label'               => __( 'Service', 'carawebs-cpt' ),
+      'description'         => __( 'Service posts', 'carawebs-cpt' ),
+      'labels'              => $labels,
+      'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'page-attributes', ),
+      'hierarchical'        => false,
+      'public'              => true,
+      'show_ui'             => true,
+      'show_in_menu'        => true,
+      'menu_icon'					 => 'dashicons-hammer',
+      'menu_position'       => 5,
+      'show_in_admin_bar'   => true,
+      'show_in_nav_menus'   => true,
+      'can_export'          => true,
+      'has_archive'         => true,
+      'exclude_from_search' => false,
+      'publicly_queryable'  => true,
+      'capability_type'     => 'page',
+      )
+    );
+
+  }
+
+  /**
+  * Custom messages for the Service Custom Post Type
+  *
+  * @param  array $messages [description]
+  * @return array $messages [description]
+  */
+  public function service_updated_messages( $messages ) {
+
+    global $post;
+
+    $permalink = get_permalink( $post );
+
+    $messages['staff_resource'] = array(
+      0 => '', // Unused. Messages start at index 1.
+      1 => sprintf( __('Service updated. <a target="_blank" href="%s">View Service</a>', 'carawebs-cpt'), esc_url( $permalink ) ),
+      2 => __('Custom field updated.', 'carawebs-cpt'),
+      3 => __('Custom field deleted.', 'carawebs-cpt'),
+      4 => __('Service updated.', 'carawebs-cpt'),
+      /* translators: %s: date and time of the revision */
+      5 => isset($_GET['revision']) ? sprintf( __('Service restored to revision from %s', 'carawebs-cpt'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+      6 => sprintf( __('Service published. <a href="%s">View Service</a>', 'carawebs-cpt'), esc_url( $permalink ) ),
+      7 => __('Service saved.', 'carawebs-cpt'),
+      8 => sprintf( __('Service submitted. <a target="_blank" href="%s">Preview Service</a>', 'carawebs-cpt'), esc_url( add_query_arg( 'preview', 'true', $permalink ) ) ),
+      9 => sprintf( __('Service scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview Service</a>', 'carawebs-cpt'),
+      // translators: Publish box date format, see http://php.net/date
+      date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( $permalink ) ),
+      10 => sprintf( __('Service draft updated. <a target="_blank" href="%s">Preview Service</a>', 'carawebs-cpt'), esc_url( add_query_arg( 'preview', 'true', $permalink ) ) ),
+    );
+
+    return $messages;
 
   }
 

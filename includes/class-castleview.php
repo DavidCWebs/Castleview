@@ -158,11 +158,17 @@ class Castleview {
 		// Register 'project' Custom Post Type
 		$this->loader->add_action( 'init', $custom_post_types, 'project_init' );
 
+		// Register 'service' Custom Post Type
+		$this->loader->add_action( 'init', $custom_post_types, 'service_init' );
+
 		// Register a custom taxonomy for project CPTs
 		$this->loader->add_action( 'init', $custom_post_types, 'project_taxonomy' );
 
 		// Messages for Project CPT
 		$this->loader->add_action( 'post_updated_messages', $custom_post_types, 'project_updated_messages' );
+
+		// Messages for Service CPT
+		$this->loader->add_action( 'post_updated_messages', $custom_post_types, 'service_updated_messages' );
 
 	}
 
